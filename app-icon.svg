@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="UK Theory Test Trainer">
+  <rect width="512" height="512" rx="96" fill="#0f7b58"/>
+  <path d="M80 336h352v84H80z" fill="#273435"/>
+  <path d="M250 336h12v84h-12z" fill="#fff"/>
+  <circle cx="256" cy="176" r="100" fill="#fff" stroke="#c02e33" stroke-width="24"/>
+  <text x="256" y="194" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="800" fill="#17211c">43/50</text>
+  <path d="M174 288h164l38 48H136z" fill="#f2c94c"/>
+  <circle cx="174" cy="346" r="22" fill="#17211c"/>
+  <circle cx="338" cy="346" r="22" fill="#17211c"/>
+</svg>

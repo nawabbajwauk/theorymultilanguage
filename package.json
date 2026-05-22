@@ -1,0 +1,22 @@
+{
+  "name": "uk-theory-test-trainer",
+  "version": "1.0.0",
+  "description": "Free UK driving theory test trainer in English, Punjabi and Hindi.",
+  "private": true,
+  "scripts": {
+    "start": "npx serve . -l 4173",
+    "mobile:init": "npx cap init \"UK Theory Test Trainer\" \"com.uktheorytest.trainer\" --web-dir .",
+    "mobile:add:android": "npx cap add android",
+    "mobile:add:ios": "npx cap add ios",
+    "mobile:sync": "npx cap sync",
+    "mobile:open:android": "npx cap open android",
+    "mobile:open:ios": "npx cap open ios"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^6.1.2",
+    "@capacitor/cli": "^6.1.2",
+    "@capacitor/core": "^6.1.2",
+    "@capacitor/ios": "^6.1.2",
+    "serve": "^14.2.4"
+  }
+}

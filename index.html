@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f7b58" />
+    <meta name="description" content="Free UK driving theory test practice in English, Punjabi and Hindi." />
+    <title>UK Theory Test Practice</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="app-icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">L</div>
+        <div>
+          <p class="kicker" data-i18n="brandKicker">UK car theory practice</p>
+          <h1 data-i18n="brandTitle">Theory Test Trainer</h1>
+        </div>
+      </div>
+      <div class="top-actions">
+        <label class="language-picker">
+          <span data-i18n="language">Language</span>
+          <select id="languageSelect" aria-label="Language">
+            <option value="en">English</option>
+            <option value="pa">Punjabi</option>
+            <option value="hi">Hindi</option>
+          </select>
+        </label>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" data-i18n="heroEyebrow">50 question mock tests from a 200 question bank</p>
+          <h2 data-i18n="heroTitle">Practise like the real UK driving theory test.</h2>
+          <p data-i18n="heroText">
+            Study in English, Punjabi, or Hindi. Start a timed mock test, practise by topic, then review every answer with a plain explanation.
+          </p>
+          <div class="hero-buttons">
+            <button class="primary" id="startMock" type="button" data-i18n="startMock">Start mock test</button>
+            <button class="secondary" id="startPractice" type="button" data-i18n="practiceAll">Practice all questions</button>
+          </div>
+        </div>
+        <div class="road-visual" aria-hidden="true">
+          <div class="skyline"></div>
+          <div class="sign-board">43/50</div>
+          <div class="road">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="car-shape"></div>
+        </div>
+      </section>
+
+      <section class="stats-strip" aria-label="Test facts">
+        <div>
+          <strong>50</strong>
+          <span data-i18n="questions">questions</span>
+        </div>
+        <div>
+          <strong>57</strong>
+          <span data-i18n="minutes">minutes</span>
+        </div>
+        <div>
+          <strong>43</strong>
+          <span data-i18n="passMark">pass mark</span>
+        </div>
+        <div>
+          <strong>200</strong>
+          <span data-i18n="bank">question bank</span>
+        </div>
+      </section>
+
+      <section class="launch-panel" id="freeAccess">
+        <div class="section-head">
+          <div>
+            <p class="kicker" data-i18n="freeKicker">Free access record</p>
+            <h2 data-i18n="freeTitle">Keep learning free, keep a record of learners.</h2>
+          </div>
+          <button class="ghost" id="installApp" type="button" data-i18n="installApp">Install app</button>
+        </div>
+        <p data-i18n="freeText">Learners can register for free access so you know who is using the app. The learning stays free.</p>
+        <form class="access-form" id="freeAccessForm" name="free-access" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="free-access" />
+          <p class="hidden"><label>Do not fill this <input name="bot-field" /></label></p>
+          <label>
+            <span data-i18n="nameLabel">Name</span>
+            <input id="learnerName" name="name" autocomplete="name" required />
+          </label>
+          <label>
+            <span data-i18n="emailLabel">Email or phone</span>
+            <input id="learnerContact" name="contact" autocomplete="email" required />
+          </label>
+          <label>
+            <span data-i18n="goalLabel">Goal</span>
+            <select id="learnerGoal" name="goal">
+              <option value="car-theory" data-i18n="goalCar">Car theory test</option>
+              <option value="revision" data-i18n="goalRevision">General revision</option>
+              <option value="family" data-i18n="goalFamily">Helping family</option>
+            </select>
+          </label>
+          <label class="consent-row">
+            <input id="learnerConsent" name="consent" type="checkbox" required />
+            <span data-i18n="consentText">I agree to be contacted about free theory-test learning updates.</span>
+          </label>
+          <p class="privacy-note"><a href="privacy.html" data-i18n="privacyLink">Privacy policy</a></p>
+          <div class="form-actions">
+            <button class="primary" type="submit" data-i18n="registerFree">Register free access</button>
+            <button class="secondary" id="exportRecords" type="button" data-i18n="exportRecords">Export local records</button>
+          </div>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="study-panel" id="studyPanel">
+        <div class="section-head">
+          <div>
+            <p class="kicker" data-i18n="studyKicker">Learn before you test</p>
+            <h2 data-i18n="studyTitle">Road signs, theory notes and hazards</h2>
+          </div>
+          <button class="ghost" id="stopVoice" type="button" data-i18n="stopVoice">Stop voice</button>
+        </div>
+        <p class="voice-status" id="voiceStatus" aria-live="polite"></p>
+
+        <div class="study-layout">
+          <article class="study-block">
+            <div class="block-head">
+              <h3 data-i18n="roadSignsTitle">Road signs to know</h3>
+            </div>
+            <div class="sign-grid" id="roadSignsGrid"></div>
+          </article>
+
+          <article class="study-block">
+            <div class="block-head">
+              <h3 data-i18n="theoryTitle">Theory reading</h3>
+            </div>
+            <div class="theory-list" id="theoryList"></div>
+          </article>
+
+          <article class="study-block wide">
+            <div class="block-head">
+              <h3 data-i18n="hazardTitle">Hazard practice</h3>
+              <button class="secondary" id="startHazards" type="button" data-i18n="hazardPractice">Practice hazard questions</button>
+            </div>
+            <div class="hazard-grid" id="hazardGrid"></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="controls-panel">
+        <div class="section-head">
+          <div>
+            <p class="kicker" data-i18n="chooseTopic">Choose a topic</p>
+            <h2 data-i18n="focusPractice">Focused practice</h2>
+          </div>
+          <button class="ghost" id="resetProgress" type="button" data-i18n="reset">Reset progress</button>
+        </div>
+        <div id="topicGrid" class="topic-grid"></div>
+      </section>
+
+      <section class="exam-panel hidden" id="examPanel">
+        <div class="section-head">
+          <div>
+            <p class="kicker" data-i18n="realExamMode">Real exam mode</p>
+            <h2 data-i18n="examReadyTitle">Mock theory test ready</h2>
+          </div>
+          <div class="timer">57:00</div>
+        </div>
+        <div class="exam-facts">
+          <div><strong>50</strong><span data-i18n="questions">questions</span></div>
+          <div><strong>57</strong><span data-i18n="minutes">minutes</span></div>
+          <div><strong>43</strong><span data-i18n="passMark">pass mark</span></div>
+        </div>
+        <p data-i18n="examReadyText">You will not see the correct answers during the test. You can flag questions, move around, and review unanswered questions before finishing.</p>
+        <div class="hero-buttons">
+          <button class="primary" id="beginExam" type="button" data-i18n="beginExam">Begin timed test</button>
+          <button class="secondary" id="cancelExam" type="button" data-i18n="cancel">Cancel</button>
+        </div>
+      </section>
+
+      <section class="quiz-shell hidden" id="quizShell" aria-live="polite">
+        <div class="quiz-top">
+          <div>
+            <p class="kicker" id="modeLabel">Mock test</p>
+            <h2 id="questionCounter">Question 1 of 50</h2>
+          </div>
+          <div class="timer" id="timer">57:00</div>
+        </div>
+        <div class="exam-status" id="examStatus">
+          <div><strong id="answeredCount">0</strong><span data-i18n="answered">Answered</span></div>
+          <div><strong id="unansweredCount">50</strong><span data-i18n="unansweredShort">Unanswered</span></div>
+          <div><strong id="flaggedCount">0</strong><span data-i18n="flagged">Flagged</span></div>
+        </div>
+        <div class="progress-track"><div id="progressBar"></div></div>
+        <article class="question-card">
+          <div class="question-meta">
+            <span id="categoryLabel">Road signs</span>
+            <div class="question-tools">
+              <button class="icon-button" id="speakQuestion" type="button" title="Listen" aria-label="Listen">▶</button>
+              <button class="icon-button" id="flagQuestion" type="button" title="Flag question" aria-label="Flag question">⚑</button>
+            </div>
+          </div>
+          <h3 id="questionText"></h3>
+          <div id="options" class="options"></div>
+          <p id="instantFeedback" class="feedback" aria-live="polite"></p>
+        </article>
+        <div class="quiz-actions">
+          <button class="secondary" id="prevQuestion" type="button" data-i18n="previous">Previous</button>
+          <button class="secondary" id="nextQuestion" type="button" data-i18n="next">Next</button>
+          <button class="primary" id="finishQuiz" type="button" data-i18n="finish">Finish</button>
+        </div>
+        <div class="question-nav" id="questionNav" aria-label="Question navigation"></div>
+      </section>
+
+      <section class="results hidden" id="results">
+        <div class="score-card">
+          <p class="kicker" data-i18n="yourResult">Your result</p>
+          <h2 id="scoreTitle"></h2>
+          <p id="scoreText"></p>
+          <div class="hero-buttons">
+            <button class="primary" id="reviewAnswers" type="button" data-i18n="review">Review answers</button>
+            <button class="secondary" id="tryAgain" type="button" data-i18n="tryAgain">Try another test</button>
+          </div>
+        </div>
+        <div id="reviewList" class="review-list hidden"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p><span data-i18n="disclaimer">Practice content only. Book the official test through GOV.UK and study the latest Highway Code.</span> <a href="privacy.html" data-i18n="privacyLink">Privacy policy</a></p>
+    </footer>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
